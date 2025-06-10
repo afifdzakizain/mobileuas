@@ -24,6 +24,7 @@ import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.uas.mobileuas.R;
 
 import org.w3c.dom.Text;
 

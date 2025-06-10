@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="imgDestination" type="id" />
+    <item name="tvDestinationName" type="id" />
+    <item name="tvDescription" type="id" />
+    <item name="tvPrice" type="id" />
+    <item name="image_icon" type="id" />
+    <item name="text_title" type="id" />
+    <item name="text_id" type="id" />
+    <item name="text_detail" type="id" />
+    <item name="text_status" type="id" />
+</resources>

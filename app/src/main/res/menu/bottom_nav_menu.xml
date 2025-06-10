@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="Beranda" />
+    <item
+        android:id="@+id/nav_transaksi"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Transaksi" />
+    <item
+        android:id="@+id/nav_profil"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Profil" />
+    <item
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/ic_search1"
+        android:title="Cari" />
+</menu>

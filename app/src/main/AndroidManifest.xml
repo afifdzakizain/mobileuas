@@ -18,7 +18,7 @@
         android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
 
-        <!-- SplashScreen jadi launcher -->
+        <!-- SplashScreen sebagai launcher (jika ingin SplashScreen yang pertama muncul) -->
         <activity
             android:name=".ui.theme.SplashScreen"
             android:exported="true"
@@ -29,6 +29,9 @@
             </intent-filter>
         </activity>
 
+        <!-- Jika kamu lebih memilih MainActivity sebagai launcher, pindahkan intent-filter ke MainActivity dan hapus dari SplashScreen -->
+
+        <!-- Login & Register -->
         <activity
             android:name=".Login"
             android:exported="true"
@@ -39,11 +42,38 @@
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
 
+        <!-- Main -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
 
+        <!-- Recommendation Activities -->
+        <activity
+            android:name=".RecommendationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light" />
+
+        <activity
+            android:name=".RecommendationDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light" />
+
+        <!-- Ticket Purchase Activities -->
+        <activity
+            android:name=".BusTicketPurchaseActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+
+        <activity
+            android:name=".PlaneTicketPurchaseActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+
+        <activity
+            android:name=".TrainTicketPurchaseActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
     </application>
 
 </manifest>

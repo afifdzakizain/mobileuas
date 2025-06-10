@@ -1,53 +1,74 @@
 package com.uas.mobileuas;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.ViewGroup;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.compose.foundation.gestures.snapping.SnapPosition;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
-import com.google.firebase.Firebase;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.uas.mobileuas.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseAuth auth;
-    Button button;
-    TextView textView;
-    FirebaseUser user;
-
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        auth = FirebaseAuth.getInstance();
-        button = findViewById(R.id.logout);
-        textView = findViewById(R.id.userDetails);
-        user = auth.getCurrentUser();
-        if(user == null){
-            Intent intent = new Intent (getApplicationContext(),Login.class);
-            startActivity(intent);
-            finish();
-        }
-        else {
-            textView.setText(user.getEmail());
-        }
-        button.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent (getApplicationContext(),Login.class);
-            startActivity(intent);
-            finish();
+
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+
+        // Set default fragment (Home)
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new Fragment())
+                .commit();
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
+                selectedFragment = new Fragment();
+            } else if (itemId == R.id.nav_transaksi) {
+                selectedFragment = new TransaksiFragment();
+            } else if (itemId == R.id.nav_profil) {
+                selectedFragment = new ProfilFragment();
+            } else if (itemId == R.id.navigation_search) {
+                selectedFragment = new SearchTripFragment(); // Fragmen search trip sudah public static
+            }
+
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, selectedFragment)
+                        .commit();
+            }
+
+            return true;
         });
+    }
+
+    // Perbaikan: Fragment harus public static dan punya konstruktor kosong
+    public static class SearchTripFragment extends Fragment {
+
+        public SearchTripFragment() {
+            // konstruktor kosong wajib ada
+        }
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater,
+                                 @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+            // Ganti dengan layout fragment search trip kamu
+            return inflater.inflate(R.layout.fragment_search_trip, container, false);
+        }
     }
 }
