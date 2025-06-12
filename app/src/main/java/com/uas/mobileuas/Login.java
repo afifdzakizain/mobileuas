@@ -32,6 +32,7 @@ public class Login extends AppCompatActivity {
         if (currentUser != null) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left); // Animasi transisi
             finish();
         }
     }
@@ -54,6 +55,7 @@ public class Login extends AppCompatActivity {
         textView.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), Register.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             finish();
         });
 
@@ -81,6 +83,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Login Successfully", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                             finish();
                         } else {
                             Toast.makeText(Login.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -88,7 +91,6 @@ public class Login extends AppCompatActivity {
                     });
         });
 
-        // 👉 Fitur "Forgot Password"
         forgotPassword.setOnClickListener(v -> {
             String emailInput = String.valueOf(editTextEmail.getText()).trim();
 

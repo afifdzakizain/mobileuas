@@ -9,4 +9,13 @@
     <item name="text_id" type="id" />
     <item name="text_detail" type="id" />
     <item name="text_status" type="id" />
+    <item name="layoutPesawat" type="id" />
+    <item name="nav_pemesanan" type="id" />
+    <item name="tvKursi" type="id" />
+    <item name="tvMetode" type="id" />
+    <item name="tvStatus" type="id" />
+    <item name="tvNamaPo" type="id" />
+    <item name="tvRute" type="id" />
+    <item name="tvTanggal" type="id" />
+    <item name="tvHarga" type="id" />
 </resources>

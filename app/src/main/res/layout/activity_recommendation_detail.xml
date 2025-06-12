@@ -1,28 +1,55 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:padding="16dp">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/imgDetail"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="200dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView android:id="@+id/tvDetailTitle"
-        android:textSize="20sp" android:textStyle="bold"
-        android:layout_marginTop="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tvDetailTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Judul Rekomendasi"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/imgDetail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
-    <TextView android:id="@+id/tvDetailDesc"
+    <TextView
+        android:id="@+id/tvDetailDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi singkat dari rekomendasi ini."
         android:textSize="16sp"
-        android:layout_marginTop="4dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toBottomOf="@id/tvDetailTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
 
-    <TextView android:id="@+id/tvDetailPrice"
-        android:textSize="16sp" android:textColor="#009688"
-        android:layout_marginTop="4dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvDetailPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Rp 0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#FF5722"
+        app:layout_constraintTop_toBottomOf="@id/tvDetailDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

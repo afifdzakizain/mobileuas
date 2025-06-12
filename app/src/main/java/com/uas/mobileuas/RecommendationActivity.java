@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.uas.mobileuas.R;
 import com.uas.mobileuas.ui.theme.RecommendationAdapter;
+import com.uas.mobileuas.RecommendationDetailActivity;
 import com.uas.mobileuas.ui.theme.RecommendationItem;
 
 import java.util.ArrayList;

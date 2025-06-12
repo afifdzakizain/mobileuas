@@ -60,6 +60,8 @@ dependencies {
 
     // Google Material Design library, versi 1.5.0 (atau yang terbaru)
     implementation("com.google.android.material:material:1.5.0")
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.inappmessaging)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

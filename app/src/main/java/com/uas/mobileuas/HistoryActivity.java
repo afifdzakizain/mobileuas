@@ -1,49 +1,67 @@
 package com.uas.mobileuas;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.uas.mobileuas.ui.theme.TransaksiAdapter;
+import com.uas.mobileuas.ui.theme.Transaksi;
 
-import com.uas.mobileuas.R;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    private RecyclerView rvHistory;
-    private HistoryAdapter adapter;
-    private ArrayList<HistoryItem> historyList;
+    private RecyclerView recyclerView;
+    private TransaksiAdapter adapter;
+    private ArrayList<Transaksi> transaksiList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        rvHistory = findViewById(R.id.rvHistory);
-        rvHistory.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = findViewById(R.id.recyclerHistory);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Contoh data dummy, nanti bisa ambil dari database / API
-        historyList = new ArrayList<>();
-        historyList.add(new HistoryItem("Jakarta - Bali", "01 Juni 2025", "Selesai"));
-        historyList.add(new HistoryItem("Surabaya - Bandung", "15 Mei 2025", "Dibatalkan"));
-        historyList.add(new HistoryItem("Yogyakarta - Semarang", "10 Mei 2025", "Selesai"));
+        transaksiList = new ArrayList<>();
 
-        adapter = new HistoryAdapter(historyList, item -> {
-            // Saat klik item, tampilkan toast atau pindah ke detail
-            Toast.makeText(HistoryActivity.this,
-                    "Klik: " + item.getDestination(), Toast.LENGTH_SHORT).show();
+        // Ambil data dari SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("riwayat_transaksi", MODE_PRIVATE);
+        String jsonData = prefs.getString("data", "[]");
 
-            // Contoh pindah ke detail, buat HistoryDetailActivity jika ingin
-            // Intent intent = new Intent(HistoryActivity.this, HistoryDetailActivity.class);
-            // intent.putExtra("destination", item.getDestination());
-            // startActivity(intent);
-        });
+        try {
+            JSONArray array = new JSONArray(jsonData);
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject obj = array.getJSONObject(i);
 
-        rvHistory.setAdapter(adapter);
+                Transaksi transaksi = new Transaksi(
+                        obj.getString("namaPO"),
+                        obj.getString("jamBerangkat"),
+                        obj.getString("harga"),
+                        obj.getString("fromCity"),
+                        obj.getString("toCity"),
+                        obj.getString("tanggal"),
+                        obj.getString("kursi"),
+                        obj.getString("metodePembayaran"),
+                        obj.getString("status")
+                );
+
+                transaksiList.add(transaksi);
+            }
+
+            adapter = new TransaksiAdapter(transaksiList);
+            recyclerView.setAdapter(adapter);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Gagal memuat riwayat", Toast.LENGTH_SHORT).show();
+        }
     }
 }

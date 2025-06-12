@@ -2,60 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:padding="32dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <!-- Container tombol beli tiket -->
-    <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:text="Selamat datang di Aplikasi Tiket"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="32dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btnBus"
-            android:text="Beli Tiket Bus"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
-
-        <Button
-            android:id="@+id/btnPlane"
-            android:text="Beli Tiket Pesawat"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
-
-        <Button
-            android:id="@+id/btnTrain"
-            android:text="Beli Tiket Kereta"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <!-- FrameLayout untuk konten fragment (jika pakai fragment dinamis) -->
+    <!-- Tempat fragment muncul -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Bottom navigation -->
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_nav_menu" />
-
 </LinearLayout>

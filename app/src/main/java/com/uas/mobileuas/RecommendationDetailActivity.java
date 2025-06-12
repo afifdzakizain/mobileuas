@@ -29,3 +29,4 @@ public class RecommendationDetailActivity extends AppCompatActivity {
         tvPrice.setText(getIntent().getStringExtra("price"));
     }
 }
+

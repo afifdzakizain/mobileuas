@@ -1,18 +1,12 @@
 package com.uas.mobileuas;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.uas.mobileuas.R;
+import com.uas.mobileuas.ui.theme.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,23 +20,19 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
-        // Set default fragment (Home)
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new Fragment())
-                .commit();
-
+        // Listener bottom navigation
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
-
             int itemId = item.getItemId();
+
             if (itemId == R.id.nav_home) {
-                selectedFragment = new Fragment();
+                selectedFragment = new HomeFragment();
             } else if (itemId == R.id.nav_transaksi) {
                 selectedFragment = new TransaksiFragment();
+            } else if (itemId == R.id.nav_pemesanan) {
+                selectedFragment = new PemesananFragment();
             } else if (itemId == R.id.nav_profil) {
                 selectedFragment = new ProfilFragment();
-            } else if (itemId == R.id.navigation_search) {
-                selectedFragment = new SearchTripFragment(); // Fragmen search trip sudah public static
             }
 
             if (selectedFragment != null) {
@@ -53,22 +43,13 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         });
-    }
 
-    // Perbaikan: Fragment harus public static dan punya konstruktor kosong
-    public static class SearchTripFragment extends Fragment {
-
-        public SearchTripFragment() {
-            // konstruktor kosong wajib ada
-        }
-
-        @Nullable
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater,
-                                 @Nullable ViewGroup container,
-                                 @Nullable Bundle savedInstanceState) {
-            // Ganti dengan layout fragment search trip kamu
-            return inflater.inflate(R.layout.fragment_search_trip, container, false);
+        // Tangani intent jika berasal dari tombol "Bayar Sekarang"
+        String navigateTo = getIntent().getStringExtra("navigateTo");
+        if ("pemesanan".equals(navigateTo)) {
+            bottomNavigationView.setSelectedItemId(R.id.nav_pemesanan); // akan trigger listener di atas
+        } else {
+            bottomNavigationView.setSelectedItemId(R.id.nav_home); // default ke home
         }
     }
 }

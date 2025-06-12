@@ -13,6 +13,7 @@ import com.uas.mobileuas.R;
 import java.util.List;
 
 public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.ViewHolder> {
+
     private List<Transaksi> transaksiList;
 
     public TransaksiAdapter(List<Transaksi> transaksiList) {
@@ -21,7 +22,7 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.View
 
     @NonNull
     @Override
-    public TransaksiAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_transaksi, parent, false);
         return new ViewHolder(view);
@@ -30,9 +31,14 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Transaksi transaksi = transaksiList.get(position);
-        holder.textId.setText(transaksi.id);
-        holder.textDetail.setText(transaksi.detail);
-        holder.textStatus.setText("Status: " + transaksi.status);
+
+        holder.txtNamaPO.setText(transaksi.getNamaPO());
+        holder.txtJadwal.setText("Berangkat: " + transaksi.getJamBerangkat() + ", Tanggal: " + transaksi.getTanggal());
+        holder.txtRute.setText("Dari " + transaksi.getFromCity() + " ke " + transaksi.getToCity());
+        holder.txtHarga.setText("Harga: Rp" + transaksi.getHarga());
+        holder.txtKursi.setText("Jumlah Kursi: " + transaksi.getKursi());
+        holder.txtMetode.setText("Metode: " + transaksi.getMetode());
+        holder.txtStatus.setText("Status: " + transaksi.getStatus());
     }
 
     @Override
@@ -41,13 +47,17 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textId, textDetail, textStatus;
+        TextView txtNamaPO, txtJadwal, txtRute, txtHarga, txtKursi, txtMetode, txtStatus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textId = itemView.findViewById(R.id.text_id);
-            textDetail = itemView.findViewById(R.id.text_detail);
-            textStatus = itemView.findViewById(R.id.text_status);
+            txtNamaPO = itemView.findViewById(R.id.txtNamaPO);
+            txtJadwal = itemView.findViewById(R.id.txtJadwal);
+            txtRute = itemView.findViewById(R.id.txtRute);
+            txtHarga = itemView.findViewById(R.id.txtHarga);
+            txtKursi = itemView.findViewById(R.id.txtKursi);
+            txtMetode = itemView.findViewById(R.id.txtMetode);
+            txtStatus = itemView.findViewById(R.id.txtStatus);
         }
     }
 }
